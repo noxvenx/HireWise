@@ -39,7 +39,8 @@
             Recruitment Batch
         </a>
 
-        <a href="#" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">
+        <a href="{{ route('candidates.index') }}"
+           class="block px-3 py-2 rounded-lg {{ request()->routeIs('candidates.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800' }}">
             Candidates
         </a>
 

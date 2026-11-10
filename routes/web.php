@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\RecruitmentBatchController;
 
 Route::middleware('guest')->group(function () {
@@ -30,5 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:super_admin,admin_hrd')->group(function () {
         Route::resource('recruitment-batches', RecruitmentBatchController::class)
             ->names('recruitment-batches');
+        Route::resource('candidates', CandidateController::class)
+            ->names('candidates');
     });
 });
