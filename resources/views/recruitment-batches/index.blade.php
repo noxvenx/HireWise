@@ -69,14 +69,20 @@
                         </td>
                         <td class="px-6 py-4">{{ $batch->creator?->name ?? '-' }}</td>
                         <td class="px-6 py-4 text-center whitespace-nowrap">
+                            <a href="{{ route('recruitment-batches.show', $batch) }}"
+                            class="text-indigo-600 hover:underline px-1.5 py-1 rounded-lg">
+                                Detail
+                            </a>
+
                             <a href="{{ route('recruitment-batches.edit', $batch) }}"
-                               class="text-blue-600 hover:underline px-1.5 py-1 rounded-lg">
+                            class="text-blue-600 hover:underline px-1.5 py-1 rounded-lg">
                                 Edit
                             </a>
+
                             <a href="{{ route('recruitment-batches.destroy', $batch) }}"
-                               class="text-red-600 hover:underline px-1.5 py-1 rounded-lg"
-                               data-delete-url="{{ route('recruitment-batches.destroy', $batch) }}"
-                               data-delete-name="{{ $batch->name }}">
+                            class="text-red-600 hover:underline px-1.5 py-1 rounded-lg"
+                            data-delete-url="{{ route('recruitment-batches.destroy', $batch) }}"
+                            data-delete-name="{{ $batch->name }}">
                                 Delete
                             </a>
                         </td>

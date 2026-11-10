@@ -44,10 +44,27 @@ class RecruitmentBatchController extends Controller
             ->with('success', 'Recruitment Batch berhasil dibuat.');
     }
 
+   
     public function show(RecruitmentBatch $recruitmentBatch)
     {
-        return view('recruitment-batches.show', compact('recruitmentBatch'));
+        $recruitmentBatch->load([
+            'applications.candidate',
+            'applications.creator',
+        ]);
+
+        $availableCandidates = \App\Models\Candidate::query()
+            ->whereDoesntHave('applications', function ($query) use ($recruitmentBatch) {
+                $query->where('recruitment_batch_id', $recruitmentBatch->id);
+            })
+            ->orderBy('full_name')
+            ->get();
+
+        return view('recruitment-batches.show', compact(
+            'recruitmentBatch',
+            'availableCandidates'
+        ));
     }
+
 
     public function edit(RecruitmentBatch $recruitmentBatch)
     {

@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\RecruitmentBatchController;
+use App\Http\Controllers\RecruitmentApplicationController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])
@@ -33,5 +34,9 @@ Route::middleware('auth')->group(function () {
             ->names('recruitment-batches');
         Route::resource('candidates', CandidateController::class)
             ->names('candidates');
+        Route::post(
+            '/recruitment-batches/{recruitmentBatch}/applications',
+            [RecruitmentApplicationController::class, 'store']
+            )->name('recruitment-batches.applications.store');
     });
 });

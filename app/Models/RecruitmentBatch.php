@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class RecruitmentBatch extends Model
 {
@@ -31,5 +32,10 @@ class RecruitmentBatch extends Model
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function applications(): HasMany
+    {
+        return $this->hasMany(RecruitmentApplication::class);
     }
 }
