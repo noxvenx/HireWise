@@ -44,7 +44,9 @@
             Candidates
         </a>
 
-        <a href="#" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">
+        <a href="{{ route('administrative-screening.index') }}"
+            class="block px-3 py-2 rounded-lg
+            {{ request()->routeIs('administrative-screening.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800' }}">
             Administrative Screening
         </a>
 

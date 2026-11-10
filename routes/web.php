@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\AdministrativeScreeningController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\RecruitmentBatchController;
 use App\Http\Controllers\RecruitmentApplicationController;
+
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLoginForm'])
@@ -38,5 +40,9 @@ Route::middleware('auth')->group(function () {
             '/recruitment-batches/{recruitmentBatch}/applications',
             [RecruitmentApplicationController::class, 'store']
             )->name('recruitment-batches.applications.store');
+        Route::get('/administrative-screening', [AdministrativeScreeningController::class, 'index'])
+            ->name('administrative-screening.index');
+        Route::patch('/administrative-screening/{application}', [AdministrativeScreeningController::class, 'update'])
+            ->name('administrative-screening.update');
     });
 });
