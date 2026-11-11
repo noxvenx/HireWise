@@ -35,10 +35,11 @@ class RecruitmentCriterion extends Model
 
     public function assessments(): HasMany
     {
-    return $this->hasMany(CandidateAssessment::class);
+        return $this->hasMany(CandidateAssessment::class);
     }
+
     public function sawDetails(): HasMany
     {
-    return $this->hasMany(SawCalculationDetail::class);
+        return $this->hasMany(SawCalculationDetail::class);
     }
 }

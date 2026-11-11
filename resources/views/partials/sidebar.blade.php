@@ -135,6 +135,21 @@
                     Candidate Assessment
                 </a>
 
+                <a href="{{ route('criteria-management.index') }}"
+                    data-sidebar-link
+                    class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition
+                    {{ request()->routeIs('criteria-management.*') ? 'bg-blue-600 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white' }}">
+
+                    <svg class="h-5 w-5 shrink-0 {{ request()->routeIs('criteria-management.*') ? 'text-white' : 'text-slate-500 group-hover:text-white' }}"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4 6h16M4 12h16M4 18h10"/>
+                        <circle cx="18" cy="18" r="2"/>
+                    </svg>
+
+                    Criteria Management
+                </a>
+
                 <a href="{{ route('saw-analysis.index') }}"
                    data-sidebar-link
                    class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition

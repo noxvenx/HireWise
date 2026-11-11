@@ -19,6 +19,7 @@ class RecruitmentBatch extends Model
         'end_date',
         'status',
         'created_by',
+        'criteria_weights_locked',
     ];
 
     protected function casts(): array
@@ -26,6 +27,7 @@ class RecruitmentBatch extends Model
         return [
             'quota' => 'integer',
             'reserve_quota' => 'integer',
+            'criteria_weights_locked' => 'boolean',
             'start_date' => 'date',
             'end_date' => 'date',
         ];
@@ -43,11 +45,11 @@ class RecruitmentBatch extends Model
 
     public function criteria(): HasMany
     {
-    return $this->hasMany(RecruitmentCriterion::class);
+        return $this->hasMany(RecruitmentCriterion::class);
     }
 
     public function sawCalculations(): HasMany
     {
-    return $this->hasMany(SawCalculation::class);
+        return $this->hasMany(SawCalculation::class);
     }
 }

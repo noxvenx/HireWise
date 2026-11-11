@@ -92,18 +92,40 @@ Route::middleware('auth')->group(function () {
         Route::get('/criteria-management', [RecruitmentCriterionController::class, 'hub'])
             ->name('criteria-management.index');
 
-        Route::prefix('recruitment-batches/{recruitmentBatch}/criteria')
-            ->name('recruitment-batches.criteria.')
-            ->controller(RecruitmentCriterionController::class)
-            ->group(function () {
+        Route::post(
+            '/recruitment-batches/{recruitmentBatch}/criteria',
+            [RecruitmentCriterionController::class, 'store']
+        )->name('recruitment-batches.criteria.store');
 
-        Route::get('/', 'index')->name('index');
+        Route::put(
+            '/recruitment-batches/{recruitmentBatch}/criteria/{criterion}',
+            [RecruitmentCriterionController::class, 'update']
+        )->name('recruitment-batches.criteria.update');
 
-        Route::post('/', 'store')->name('store');
+        Route::delete(
+            '/recruitment-batches/{recruitmentBatch}/criteria/{criterion}',
+            [RecruitmentCriterionController::class, 'destroy']
+        )->name('recruitment-batches.criteria.destroy');
 
-        Route::put('/{criterion}', 'update')->name('update');
+        Route::post(
+            '/recruitment-batches/{recruitmentBatch}/criteria/renormalize',
+            [RecruitmentCriterionController::class, 'renormalize']
+        )->name('recruitment-batches.criteria.renormalize');
 
-        Route::delete('/{criterion}', 'destroy')->name('destroy');
-        });
+        Route::post(
+            '/recruitment-batches/{recruitmentBatch}/criteria/lock',
+            [RecruitmentCriterionController::class, 'lockWeights']
+        )->name('recruitment-batches.criteria.lock');
+
+        Route::post(
+            '/recruitment-batches/{recruitmentBatch}/criteria/unlock',
+            [RecruitmentCriterionController::class, 'unlockWeights']
+        )->name('recruitment-batches.criteria.unlock');
+
+        // Legacy URL: keep old links from batch pages working and send them to the Hub.
+        Route::get(
+            '/recruitment-batches/{recruitmentBatch}/criteria',
+            [RecruitmentCriterionController::class, 'index']
+        )->name('recruitment-batches.criteria.index');
     });
 });
