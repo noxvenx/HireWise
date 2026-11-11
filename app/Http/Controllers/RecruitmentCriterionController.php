@@ -9,6 +9,39 @@ use Illuminate\Validation\Rule;
 
 class RecruitmentCriterionController extends Controller
 {
+    
+    public function hub(Request $request)
+    {
+        $request->validate([
+            'batch_id' => [
+                'nullable',
+                'integer',
+                'exists:recruitment_batches,id',
+            ],
+        ]);
+
+        $batches = RecruitmentBatch::query()
+            ->orderByDesc('id')
+            ->get();
+
+        $recruitmentBatch = $request->filled('batch_id')
+            ? $batches->firstWhere('id', (int) $request->batch_id)
+            : null;
+
+        $criteria = $recruitmentBatch
+            ? $recruitmentBatch->criteria()->orderBy('criterion_code')->get()
+            : collect();
+
+        $totalWeight = $criteria->sum('weight');
+
+        return view('criteria.index', compact(
+            'batches',
+            'recruitmentBatch',
+            'criteria',
+            'totalWeight'
+        ));
+    }
+
     public function index(RecruitmentBatch $recruitmentBatch)
     {
         $criteria = $recruitmentBatch->criteria()

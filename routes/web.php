@@ -6,6 +6,7 @@ use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\AdministrativeScreeningController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\CandidateAssessmentController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HrdDecisionController;
 use App\Http\Controllers\RecruitmentBatchController;
 use App\Http\Controllers\RecruitmentApplicationController;
@@ -28,9 +29,8 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 
     Route::middleware('role:super_admin,admin_hrd')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard');
     });
     Route::middleware('role:super_admin')->group(function () {
         Route::resource('users', UserManagementController::class)
@@ -87,6 +87,10 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/reports/export-pdf', [ReportController::class, 'exportPdf'])
             ->name('reports.export-pdf');
+
+        // Criteria Management Hub
+        Route::get('/criteria-management', [RecruitmentCriterionController::class, 'hub'])
+            ->name('criteria-management.index');
 
         Route::prefix('recruitment-batches/{recruitmentBatch}/criteria')
             ->name('recruitment-batches.criteria.')
