@@ -4,6 +4,7 @@
         <label class="block text-sm font-medium mb-2">Kode Batch</label>
         <input type="text" name="batch_code"
             value="{{ old('batch_code', $batch->batch_code ?? '') }}"
+            placeholder="Contoh: REC-2026-001"
             required class="w-full border border-slate-300 rounded-lg px-4 py-3">
         @error('batch_code')
             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
@@ -14,6 +15,7 @@
         <label class="block text-sm font-medium mb-2">Nama Batch</label>
         <input type="text" name="name"
             value="{{ old('name', $batch->name ?? '') }}"
+            placeholder="Contoh: Rekrutmen Staff IT"
             required class="w-full border border-slate-300 rounded-lg px-4 py-3">
         @error('name')
             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
@@ -24,6 +26,7 @@
         <label class="block text-sm font-medium mb-2">Posisi</label>
         <input type="text" name="position"
             value="{{ old('position', $batch->position ?? '') }}"
+            placeholder="Contoh: Backend Developer"
             required class="w-full border border-slate-300 rounded-lg px-4 py-3">
         @error('position')
             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
@@ -34,8 +37,27 @@
         <label class="block text-sm font-medium mb-2">Kuota</label>
         <input type="number" name="quota"
             value="{{ old('quota', $batch->quota ?? '') }}"
+            placeholder="Contoh: 3"
             min="1" class="w-full border border-slate-300 rounded-lg px-4 py-3">
         @error('quota')
+            <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div>
+        <label class="block text-sm font-medium mb-2">Jumlah Kandidat Cadangan</label>
+        <input type="number" name="reserve_quota"
+            value="{{ old('reserve_quota', $batch->reserve_quota ?? 0) }}"
+            placeholder="Contoh: 2"
+            min="0"
+            required
+            class="w-full border border-slate-300 rounded-lg px-4 py-3">
+
+        <p class="text-xs text-slate-500 mt-1">
+            Jumlah kandidat cadangan yang ingin disiapkan HRD. Sistem akan menentukan rekomendasi berdasarkan ranking SAW.
+        </p>
+
+        @error('reserve_quota')
             <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
         @enderror
     </div>

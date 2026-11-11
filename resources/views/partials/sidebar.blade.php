@@ -54,22 +54,21 @@
             Assessment
         </p>
 
-        <a href="#" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">
-            Criteria Management
-        </a>
-
-        <a href="#" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">
+        <a href="{{ route('candidate-assessments.index') }}"
+        class="block px-3 py-2 rounded-lg {{ request()->routeIs('candidate-assessments.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800' }}">
             Candidate Assessment
         </a>
 
-        <a href="#" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">
+        <a href="{{ route('saw-analysis.index') }}"
+        class="block px-3 py-2 rounded-lg {{ request()->routeIs('saw-analysis.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800' }}">
             SAW Analysis
         </a>
 
-        <a href="#" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">
+        <a href="{{ route('hrd-decisions.index') }}"
+        class="block px-3 py-2 rounded-lg {{ request()->routeIs('hrd-decisions.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800' }}">
             HRD Decisions
         </a>
-
+        
         <p class="text-[11px] uppercase tracking-wider text-slate-500 px-3 pt-3 mb-1">
             Administration
         </p>
@@ -81,7 +80,8 @@
             </a>
         @endif
 
-        <a href="#" class="block px-3 py-2 rounded-lg text-slate-300 hover:bg-slate-800">
+        <a href="{{ route('reports.index') }}"
+           class="block px-3 py-2 rounded-lg {{ request()->routeIs('reports.*') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:bg-slate-800' }}">
             Reports
         </a>
 

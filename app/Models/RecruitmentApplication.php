@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class RecruitmentApplication extends Model
 {
@@ -47,5 +48,25 @@ class RecruitmentApplication extends Model
     public function screener(): BelongsTo
     {
         return $this->belongsTo(User::class, 'screened_by');
+    }
+    
+    public function assessments(): HasMany
+    {
+    return $this->hasMany(CandidateAssessment::class);
+    }
+
+    public function sawResults(): HasMany
+    {
+    return $this->hasMany(SawCalculationResult::class);
+    }
+
+    public function sawDetails(): HasMany
+    {
+    return $this->hasMany(SawCalculationDetail::class);
+    }
+
+    public function hrdDecisions(): HasMany
+    {
+    return $this->hasMany(HrdDecision::class);
     }
 }

@@ -14,6 +14,7 @@ class RecruitmentBatch extends Model
         'position',
         'description',
         'quota',
+        'reserve_quota',
         'start_date',
         'end_date',
         'status',
@@ -24,6 +25,7 @@ class RecruitmentBatch extends Model
     {
         return [
             'quota' => 'integer',
+            'reserve_quota' => 'integer',
             'start_date' => 'date',
             'end_date' => 'date',
         ];
@@ -37,5 +39,15 @@ class RecruitmentBatch extends Model
     public function applications(): HasMany
     {
         return $this->hasMany(RecruitmentApplication::class);
+    }
+
+    public function criteria(): HasMany
+    {
+    return $this->hasMany(RecruitmentCriterion::class);
+    }
+
+    public function sawCalculations(): HasMany
+    {
+    return $this->hasMany(SawCalculation::class);
     }
 }

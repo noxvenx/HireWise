@@ -16,6 +16,11 @@
     </div>
 
     <div class="flex gap-2">
+        <a href="{{ route('recruitment-batches.criteria.index', $recruitmentBatch) }}"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg">
+            Kelola Kriteria
+        </a>
+
         <a href="{{ route('recruitment-batches.edit', $recruitmentBatch) }}"
            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
             Edit Batch
