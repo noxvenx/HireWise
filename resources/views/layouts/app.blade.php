@@ -6,6 +6,12 @@
 
     <title>@yield('title', 'Dashboard') - HireWise</title>
 
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ asset('favicon.png') }}"
+    >
+
     <style>
     .sidebar-nav {
         scrollbar-width: none;
