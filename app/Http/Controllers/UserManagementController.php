@@ -46,16 +46,21 @@ class UserManagementController extends Controller
 
     public function edit(User $user)
     {
-        // Akun Super Admin tidak dapat dikelola dari menu ini.
-        abort_if($user->isSuperAdmin(), 403);
+    // Super Admin hanya boleh mengedit akun sendiri.
+    abort_if(
+        $user->isSuperAdmin() && $user->id !== auth()->id(),
+        403
+    );
 
-        return view('users.edit', compact('user'));
+    return view('users.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
     {
-        abort_if($user->isSuperAdmin(), 403);
-
+        abort_if(
+            $user->isSuperAdmin() && $user->id !== auth()->id(),
+            403
+        );
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => [
@@ -89,7 +94,7 @@ class UserManagementController extends Controller
 
         return redirect()
             ->route('users.index')
-            ->with('success', 'Data Admin HRD berhasil diperbarui.');
+            ->with('success', 'Data akun berhasil diperbarui.');
     }
 
     public function destroy(User $user)

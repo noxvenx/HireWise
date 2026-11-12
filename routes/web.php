@@ -16,9 +16,13 @@ use App\Http\Controllers\SawAnalysisController;
 
 
 
+
 Route::middleware('guest')->group(function () {
     Route::get('/', [LoginController::class, 'showLoginForm'])
         ->name('login');
+
+    Route::get('/login', [LoginController::class, 'showLoginForm'])
+        ->name('login.form');
 
     Route::post('/', [LoginController::class, 'login'])
         ->name('login.process');
